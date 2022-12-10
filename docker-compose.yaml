@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  payment-db:
+    image: postgres:15-alpine
+    container_name: payment-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "25432:5432"

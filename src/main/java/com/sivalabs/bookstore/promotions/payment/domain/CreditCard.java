@@ -1,4 +1,4 @@
-package com.sivalabs.bookstore.payment.domain;
+package com.sivalabs.bookstore.promotions.payment.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,24 +11,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "credit_cards")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "credit_cards")
 public class CreditCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String customerName;
+
     @Column(nullable = false)
     private String cardNumber;
+
     @Column(nullable = false)
     private String cvv;
+
     @Column(nullable = false)
     private int expiryMonth;
+
     @Column(nullable = false)
     private int expiryYear;
 }

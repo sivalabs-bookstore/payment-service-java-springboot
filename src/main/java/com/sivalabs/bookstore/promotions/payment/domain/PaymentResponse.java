@@ -1,4 +1,4 @@
-package com.sivalabs.bookstore.payment.domain;
+package com.sivalabs.bookstore.promotions.payment.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +13,7 @@ public class PaymentResponse {
     private PaymentStatus status;
 
     public enum PaymentStatus {
-        ACCEPTED, REJECTED
+        ACCEPTED,
+        REJECTED
     }
 }

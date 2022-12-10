@@ -1,9 +1,8 @@
-package com.sivalabs.bookstore.payment.domain;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+package com.sivalabs.bookstore.promotions.payment.domain;
 
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {

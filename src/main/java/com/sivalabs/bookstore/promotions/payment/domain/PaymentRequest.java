@@ -1,4 +1,4 @@
-package com.sivalabs.bookstore.payment.domain;
+package com.sivalabs.bookstore.promotions.payment.domain;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,10 +14,13 @@ import lombok.Setter;
 public class PaymentRequest {
     @NotBlank(message = "cardNumber is required")
     private String cardNumber;
+
     @NotBlank(message = "cvv is required")
     private String cvv;
+
     @NotNull(message = "expiryMonth is required")
     private Integer expiryMonth;
+
     @NotNull(message = "expiryYear is required")
     private Integer expiryYear;
 }

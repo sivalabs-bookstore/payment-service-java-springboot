@@ -1,4 +1,4 @@
-package com.sivalabs.bookstore.promotions.payment;
+package com.sivalabs.bookstore.payment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,13 +1,12 @@
-package com.sivalabs.bookstore.promotions.payment.common;
+package com.sivalabs.bookstore.payment.common;
 
-import com.sivalabs.bookstore.promotions.payment.domain.CreditCard;
-import com.sivalabs.bookstore.promotions.payment.domain.CreditCardRepository;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -26,7 +25,7 @@ public abstract class AbstractIntegrationTest {
         Startables.deepStart(postgres).join();
     }
 
-    @Autowired private CreditCardRepository creditCardRepository;
+    @Autowired private JdbcTemplate jdbcTemplate;
 
     @LocalServerPort private Integer port;
 
@@ -34,9 +33,11 @@ public abstract class AbstractIntegrationTest {
     void setUp() {
         RestAssured.baseURI = "http://localhost:" + port;
 
-        creditCardRepository.deleteAllInBatch();
-        creditCardRepository.save(new CreditCard(null, "Siva", "1111222233334444", "123", 2, 2030));
-        creditCardRepository.save(new CreditCard(null, "John", "1234123412341234", "123", 3, 2030));
+        jdbcTemplate.execute("delete from credit_cards");
+        jdbcTemplate.execute(
+                "insert into credit_cards(customer_name, card_number, cvv, expiry_month, expiry_year) values ('Siva', '1111222233334444', '123', 2, 2030)");
+        jdbcTemplate.execute(
+                "insert into credit_cards(customer_name, card_number, cvv, expiry_month, expiry_year) values ('Ramu', '1234123412341234', '123', 10, 2030)");
     }
 
     @DynamicPropertySource

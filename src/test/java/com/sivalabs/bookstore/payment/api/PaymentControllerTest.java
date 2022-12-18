@@ -1,9 +1,11 @@
-package com.sivalabs.bookstore.promotions.payment.api;
+package com.sivalabs.bookstore.payment.api;
 
+import static com.sivalabs.bookstore.payment.domain.PaymentResponse.PaymentStatus.ACCEPTED;
+import static com.sivalabs.bookstore.payment.domain.PaymentResponse.PaymentStatus.REJECTED;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-import com.sivalabs.bookstore.promotions.payment.common.AbstractIntegrationTest;
+import com.sivalabs.bookstore.payment.common.AbstractIntegrationTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +27,7 @@ class PaymentControllerTest extends AbstractIntegrationTest {
                 .post("/api/payments/validate")
                 .then()
                 .statusCode(200)
-                .body("status", is("ACCEPTED"));
+                .body("status", is(ACCEPTED.name()));
     }
 
     @Test
@@ -44,7 +46,7 @@ class PaymentControllerTest extends AbstractIntegrationTest {
                 .post("/api/payments/validate")
                 .then()
                 .statusCode(200)
-                .body("status", is("REJECTED"));
+                .body("status", is(REJECTED.name()));
     }
 
     @Test
